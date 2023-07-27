@@ -93,3 +93,34 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // checkDogs( dogsJulia, dogsKate );
 /////////////////////////////////////////////////////////////////////
 //chalange2
+//////////////////////////////////////////////////////////////////////
+const createUsernames = function ( accs ){
+
+  accs.forEach( function (acc){
+    acc.username = acc.owner
+      .toLowerCase()
+      .split( ' ' )
+      .map( name => name[ 0 ] )
+      .join( '' ); 
+    console.log( acc.username );
+  })
+
+};
+createUsernames( accounts );
+//////////////////////////////////////////////////////
+let currentAccount;
+btnLogin.addEventListener( 'click', function (e)
+{
+  e.preventDefault();
+  currentAccount = accounts.find( function(crr){
+    inputLoginUsername.value===crr.username
+  } )
+  if ( Number(inputLoginPin.value) === currentAccount?.pin )
+  {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+      }`;
+    containerApp.style.opacity = 100;
+
+  }
+})
